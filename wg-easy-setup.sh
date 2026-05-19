@@ -53,7 +53,9 @@ echo ""
 echo ""
 read -rp "Сколько клиентов создать сейчас? (1-5): " CLIENT_COUNT
 CLIENT_COUNT=${CLIENT_COUNT:-1}
-[[ "$CLIENT_COUNT" -lt 1 || "$CLIENT_COUNT" -gt 5 ]] && CLIENT_COUNT=1
+if ! [[ "$CLIENT_COUNT" =~ ^[0-9]+$ ]] || [ "$CLIENT_COUNT" -lt 1 ] || [ "$CLIENT_COUNT" -gt 5 ]; then
+  CLIENT_COUNT=1
+fi
 
 # ── Обновление системы ───────────────────────────────────────
 echo ""
